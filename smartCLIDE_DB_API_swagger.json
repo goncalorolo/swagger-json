@@ -1,0 +1,1958 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "SmartCLIDE DB API",
+    "description": "An API for accessing the SmartCLIDE database. (A Keycloak token is required, Authorization Bearer Token, for accessing the API outside the AWS cluster)",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dev.smartclide.eu/smartclide-db"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Retrieves one or more User documents",
+        "responses": {
+          "200": {
+            "description": "An array of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "operationId": "getusers",
+        "tags": [
+          "User"
+        ]
+      },
+      "post": {
+        "summary": "Creates one or more User documents",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/User"
+        },
+        "responses": {
+          "201": {
+            "description": "operation has been successful"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "parameters": [],
+        "operationId": "postusers",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "summary": "Retrieves a User document",
+        "responses": {
+          "200": {
+            "description": "User document fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/User__id"
+          }
+        ],
+        "operationId": "getUserItem",
+        "tags": [
+          "User"
+        ]
+      },
+      "put": {
+        "summary": "Updates a User document",
+        "responses": {
+          "200": {
+            "description": "User document updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/User"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/User__id"
+          }
+        ],
+        "operationId": "patchUserItem",
+        "tags": [
+          "User"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes an User document",
+        "responses": {
+          "204": {
+            "description": "User document deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/User__id"
+          }
+        ],
+        "operationId": "deleteUsertItem",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/teams": {
+      "get": {
+        "summary": "Retrieves one or more Team documents",
+        "responses": {
+          "200": {
+            "description": "An array of teams",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Team"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "operationId": "get_teams",
+        "tags": [
+          "Team"
+        ]
+      },
+      "post": {
+        "summary": "Creates one or more Team documents",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Team"
+        },
+        "responses": {
+          "201": {
+            "description": "operation has been successful"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "parameters": [],
+        "operationId": "post_teams",
+        "tags": [
+          "Team"
+        ]
+      }
+    },
+    "/teams/{teamId}": {
+      "get": {
+        "summary": "Retrieves a Team document",
+        "responses": {
+          "200": {
+            "description": "Team document fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Team"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Team__id"
+          }
+        ],
+        "operationId": "getTeamItem",
+        "tags": [
+          "Team"
+        ]
+      },
+      "put": {
+        "summary": "Updates a Team document",
+        "responses": {
+          "200": {
+            "description": "Team document updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Team"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Team__id"
+          }
+        ],
+        "operationId": "patchTeamItem",
+        "tags": [
+          "Team"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes an Team document",
+        "responses": {
+          "204": {
+            "description": "Team document deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Team__id"
+          }
+        ],
+        "operationId": "deleteTeamtItem",
+        "tags": [
+          "Team"
+        ]
+      }
+    },
+    "/ci_managers": {
+      "get": {
+        "summary": "Retrieves one or more CiManager documents",
+        "responses": {
+          "200": {
+            "description": "An array of CiManagers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CiManager"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "operationId": "getCiManagers",
+        "tags": [
+          "CiManager"
+        ]
+      },
+      "post": {
+        "summary": "Creates one or more CiManager documents",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CiManager"
+        },
+        "responses": {
+          "201": {
+            "description": "operation has been successful"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "parameters": [],
+        "operationId": "postCiManagers",
+        "tags": [
+          "CiManager"
+        ]
+      }
+    },
+    "/ci_managers/{ciManagerId}": {
+      "get": {
+        "summary": "Retrieves a CiManager document",
+        "responses": {
+          "200": {
+            "description": "CiManager document fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CiManager"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CiManager__id"
+          }
+        ],
+        "operationId": "getCiManagerItem",
+        "tags": [
+          "CiManager"
+        ]
+      },
+      "put": {
+        "summary": "Updates a CiManager document",
+        "responses": {
+          "200": {
+            "description": "CiManager document updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CiManager"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CiManager__id"
+          }
+        ],
+        "operationId": "patchCiManagerItem",
+        "tags": [
+          "CiManager"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes an CiManager document",
+        "responses": {
+          "204": {
+            "description": "CiManager document deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/CiManager__id"
+          }
+        ],
+        "operationId": "deleteCiManagerItem",
+        "tags": [
+          "CiManager"
+        ]
+      }
+    },
+    "/deployment_platforms": {
+      "get": {
+        "summary": "Retrieves one or more DeploymentPlatform documents",
+        "responses": {
+          "200": {
+            "description": "An array of DeploymentPlatforms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentPlatform"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "operationId": "getDeploymentPlatforms",
+        "tags": [
+          "DeploymentPlatform"
+        ]
+      },
+      "post": {
+        "summary": "Creates one or more DeploymentPlatform documents",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DeploymentPlatform"
+        },
+        "responses": {
+          "201": {
+            "description": "operation has been successful"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "parameters": [],
+        "operationId": "postDeploymentPlatforms",
+        "tags": [
+          "DeploymentPlatform"
+        ]
+      }
+    },
+    "/deployment_platforms/{deploymentPlatformId}": {
+      "get": {
+        "summary": "Retrieves a DeploymentPlatform document",
+        "responses": {
+          "200": {
+            "description": "DeploymentPlatform document fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentPlatform"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/DeploymentPlatform__id"
+          }
+        ],
+        "operationId": "getDeploymentPlatform",
+        "tags": [
+          "DeploymentPlatform"
+        ]
+      },
+      "put": {
+        "summary": "Updates a DeploymentPlatform document",
+        "responses": {
+          "200": {
+            "description": "DeploymentPlatform document updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DeploymentPlatform"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/DeploymentPlatform__id"
+          }
+        ],
+        "operationId": "patchDeploymentPlatformItem",
+        "tags": [
+          "DeploymentPlatform"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes an DeploymentPlatform document",
+        "responses": {
+          "204": {
+            "description": "DeploymentPlatform document deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/DeploymentPlatform__id"
+          }
+        ],
+        "operationId": "deleteDeploymentPlatformItem",
+        "tags": [
+          "DeploymentPlatform"
+        ]
+      }
+    },
+    "/service_registries": {
+      "get": {
+        "summary": "Retrieves one or more ServiceRegistry documents",
+        "responses": {
+          "200": {
+            "description": "An array of ServiceRegistries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceRegistry"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "operationId": "getServiceRegistries",
+        "tags": [
+          "ServiceRegistry"
+        ]
+      },
+      "post": {
+        "summary": "Creates one or more ServiceRegistry documents",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ServiceRegistry"
+        },
+        "responses": {
+          "201": {
+            "description": "operation has been successful"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "parameters": [],
+        "operationId": "postServiceRegistries",
+        "tags": [
+          "ServiceRegistry"
+        ]
+      }
+    },
+    "/service_registries/{serviceRegistryId}": {
+      "get": {
+        "summary": "Retrieves a ServiceRegistry document",
+        "responses": {
+          "200": {
+            "description": "ServiceRegistry document fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceRegistry"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ServiceRegistry__id"
+          }
+        ],
+        "operationId": "getServiceRegistry",
+        "tags": [
+          "ServiceRegistry"
+        ]
+      },
+      "put": {
+        "summary": "Updates a ServiceRegistry document",
+        "responses": {
+          "200": {
+            "description": "ServiceRegistry document updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ServiceRegistry"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ServiceRegistry__id"
+          }
+        ],
+        "operationId": "patchServiceRegistryItem",
+        "tags": [
+          "ServiceRegistry"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes an ServiceRegistry document",
+        "responses": {
+          "204": {
+            "description": "ServiceRegistry document deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ServiceRegistry__id"
+          }
+        ],
+        "operationId": "deleteServiceRegistryItem",
+        "tags": [
+          "ServiceRegistry"
+        ]
+      }
+    },
+    "/git_credentials": {
+      "get": {
+        "summary": "Retrieves one or more GitCredentials documents",
+        "responses": {
+          "200": {
+            "description": "An array of GitCredentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitCredentials"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "operationId": "getGitCredentials",
+        "tags": [
+          "GitCredentials"
+        ]
+      },
+      "post": {
+        "summary": "Creates one or more GitCredentials documents",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/GitCredentials"
+        },
+        "responses": {
+          "201": {
+            "description": "operation has been successful"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "parameters": [],
+        "operationId": "postGitCredentials",
+        "tags": [
+          "GitCredentials"
+        ]
+      }
+    },
+    "/git_credentials/{gitCredentialsId}": {
+      "get": {
+        "summary": "Retrieves a GitCredentials document",
+        "responses": {
+          "200": {
+            "description": "GitCredentials document fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCredentials"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/GitCredentials__id"
+          }
+        ],
+        "operationId": "getGitCredentialsItem",
+        "tags": [
+          "GitCredentials"
+        ]
+      },
+      "put": {
+        "summary": "Updates a GitCredentials document",
+        "responses": {
+          "200": {
+            "description": "GitCredentials document updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/GitCredentials"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/GitCredentials__id"
+          }
+        ],
+        "operationId": "patchGitCredentialsItem",
+        "tags": [
+          "GitCredentials"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes an GitCredentials document",
+        "responses": {
+          "204": {
+            "description": "GitCredentials document deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/GitCredentials__id"
+          }
+        ],
+        "operationId": "deleteGitCredentialsItem",
+        "tags": [
+          "GitCredentials"
+        ]
+      }
+    },
+    "/services": {
+      "get": {
+        "summary": "Retrieves one or more Service documents",
+        "responses": {
+          "200": {
+            "description": "An array of services",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Service"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "operationId": "getservices",
+        "tags": [
+          "Service"
+        ]
+      },
+      "post": {
+        "summary": "Creates one or more Service documents",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Service"
+        },
+        "responses": {
+          "201": {
+            "description": "operation has been successful"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "parameters": [],
+        "operationId": "postservices",
+        "tags": [
+          "Service"
+        ]
+      }
+    },
+    "/services/{serviceId}": {
+      "get": {
+        "summary": "Retrieves a Service document",
+        "responses": {
+          "200": {
+            "description": "Service document fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Service__id"
+          }
+        ],
+        "operationId": "getServiceItem",
+        "tags": [
+          "Service"
+        ]
+      },
+      "put": {
+        "summary": "Updates a Service document",
+        "responses": {
+          "200": {
+            "description": "Service document updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Service"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Service__id"
+          }
+        ],
+        "operationId": "patchServiceItem",
+        "tags": [
+          "Service"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes an Service document",
+        "responses": {
+          "204": {
+            "description": "Service document deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Service__id"
+          }
+        ],
+        "operationId": "deleteServicetItem",
+        "tags": [
+          "Service"
+        ]
+      }
+    },
+    "/workflows": {
+      "get": {
+        "summary": "Retrieves one or more Workflow documents",
+        "responses": {
+          "200": {
+            "description": "An array of workflows",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workflow"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "operationId": "getWorkflows",
+        "tags": [
+          "Workflow"
+        ]
+      },
+      "post": {
+        "summary": "Creates one or more Workflow documents",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Workflow"
+        },
+        "responses": {
+          "201": {
+            "description": "operation has been successful"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "parameters": [],
+        "operationId": "postWorkflows",
+        "tags": [
+          "Workflow"
+        ]
+      }
+    },
+    "/workflows/{workflowId}": {
+      "get": {
+        "summary": "Retrieves a Workflow document",
+        "responses": {
+          "200": {
+            "description": "Workflow document fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workflow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Workflow__id"
+          }
+        ],
+        "operationId": "getWorkflowItem",
+        "tags": [
+          "Workflow"
+        ]
+      },
+      "put": {
+        "summary": "Updates a Workflow document",
+        "responses": {
+          "200": {
+            "description": "Workflow document updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Workflow"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Workflow__id"
+          }
+        ],
+        "operationId": "patchWorkflowItem",
+        "tags": [
+          "Workflow"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes an Workflow document",
+        "responses": {
+          "204": {
+            "description": "Workflow document deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Workflow__id"
+          }
+        ],
+        "operationId": "deleteWorkflowItem",
+        "tags": [
+          "Workflow"
+        ]
+      }
+    },
+    "/deployments": {
+      "get": {
+        "summary": "Retrieves one or more Deployment documents",
+        "responses": {
+          "200": {
+            "description": "An array of deployments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Deployment"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "operationId": "getDeployments",
+        "tags": [
+          "Deployment"
+        ]
+      },
+      "post": {
+        "summary": "Creates one or more Deployment documents",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Deployment"
+        },
+        "responses": {
+          "201": {
+            "description": "operation has been successful"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "parameters": [],
+        "operationId": "postDeployments",
+        "tags": [
+          "Deployment"
+        ]
+      }
+    },
+    "/deployments/{deploymentId}": {
+      "get": {
+        "summary": "Retrieves a Deployment document",
+        "responses": {
+          "200": {
+            "description": "Deployment document fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Deployment__id"
+          }
+        ],
+        "operationId": "getDeploymentItem",
+        "tags": [
+          "Deployment"
+        ]
+      },
+      "put": {
+        "summary": "Updates a Deployment document",
+        "responses": {
+          "200": {
+            "description": "Deployment document updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "422": {
+            "description": "Required fields are missing or there are errors in the inserted values"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Deployment"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Deployment__id"
+          }
+        ],
+        "operationId": "patchDeploymentItem",
+        "tags": [
+          "Deployment"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes an Deployment document",
+        "responses": {
+          "204": {
+            "description": "Deployment document deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Deployment__id"
+          }
+        ],
+        "operationId": "deleteDeploymentItem",
+        "tags": [
+          "Deployment"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "_status": {
+            "type": "string",
+            "example": "OK"
+          },
+          "_error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "integer"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "_status",
+          "_error"
+        ]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c87f6aa5a2857398a80a0"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@mail.com"
+          },
+          "team_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c87f6aa5a2857398a80d8"
+          }
+        },
+        "required": [
+          "email",
+          "team_id"
+        ]
+      },
+      "Team": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c87f6aa5a2857398a80d8"
+          },
+          "name": {
+            "type": "string",
+            "example": "Test team"
+          },
+          "workflows": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "objectid"
+            }
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "objectid"
+            }
+          },
+          "deployments": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "objectid"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CiManager": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c8fa180b42501489a85db"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c87f6aa5a2857398a80a0"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "jenkins",
+              "gitlab_ci_cd",
+              "github_actions",
+              "travis"
+            ],
+            "example": "travis"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://some_url"
+          },
+          "username": {
+            "type": "string",
+            "example": "test_user"
+          },
+          "token": {
+            "type": "string",
+            "example": "giuggff8ff7igfigfiugi....."
+          }
+        },
+        "required": [
+          "user_id",
+          "type",
+          "url",
+          "username",
+          "token"
+        ]
+      },
+      "DeploymentPlatform": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c909380b42501489a85dc"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c87f6aa5a2857398a80a0"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://some_url"
+          },
+          "username": {
+            "type": "string",
+            "example": "test_user"
+          },
+          "token": {
+            "type": "string",
+            "example": "giuggff8ff7igfigfiugi....."
+          }
+        },
+        "required": [
+          "user_id",
+          "url",
+          "username",
+          "token"
+        ]
+      },
+      "ServiceRegistry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c8dab80b42501489a85da"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c87f6aa5a2857398a80a0"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "github",
+              "gitlab",
+              "bitbucket",
+              "programmableweb",
+              "docker",
+              "iot_catalogue"
+            ],
+            "example": "github"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://some_url"
+          },
+          "username": {
+            "type": "string",
+            "example": "test_user"
+          },
+          "token": {
+            "type": "string",
+            "example": "giuggff8ff7igfigfiugi....."
+          }
+        },
+        "required": [
+          "user_id",
+          "type",
+          "url",
+          "username",
+          "token"
+        ]
+      },
+      "GitCredentials": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c922780b42501489a85dd"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c87f6aa5a2857398a80a0"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "github",
+              "gitlab",
+              "bitbucket"
+            ],
+            "example": "github"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://some_url"
+          },
+          "username": {
+            "type": "string",
+            "example": "test_user"
+          },
+          "token": {
+            "type": "string",
+            "example": "giuggff8ff7igfigfiugi....."
+          }
+        },
+        "required": [
+          "user_id",
+          "type",
+          "url",
+          "username",
+          "token"
+        ]
+      },
+      "Service": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c928d80b42501489a85de"
+          },
+          "name": {
+            "type": "string",
+            "example": "Test service 1"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c87f6aa5a2857398a80a0"
+          },
+          "registry_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c8dab80b42501489a85da"
+          },
+          "git_credentials_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c922780b42501489a85dd"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://some_url"
+          },
+          "description": {
+            "type": "string",
+            "example": "this is a description of the service"
+          },
+          "is_public": {
+            "type": "boolean"
+          },
+          "licence": {
+            "type": "string",
+            "example": "Test licence"
+          },
+          "framework": {
+            "type": "string",
+            "enum": [
+              "java",
+              "spring",
+              "python"
+            ],
+            "example": "java"
+          },
+          "created": {
+            "type": "string",
+            "example": "2022-01-14T15:42:25.000+00:00"
+          },
+          "updated": {
+            "type": "string",
+            "example": "2022-01-14T15:42:25.000+00:00"
+          }
+        },
+        "required": [
+          "name",
+          "user_id",
+          "registry_id",
+          "git_credentials_id",
+          "url",
+          "description",
+          "is_public",
+          "licence",
+          "framework",
+          "created",
+          "updated"
+        ]
+      },
+      "Workflow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c937c90c52503689b68ae"
+          },
+          "name": {
+            "type": "string",
+            "example": "test workflow"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c87f6aa5a2857398a80a0"
+          },
+          "git_credentials_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c922780b42501489a85dd"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://some_url"
+          },
+          "description": {
+            "type": "string",
+            "example": "this is a description of the workflow"
+          },
+          "is_public": {
+            "type": "boolean"
+          },
+          "created": {
+            "type": "string",
+            "example": "2022-01-14T15:42:25.000+00:00"
+          },
+          "updated": {
+            "type": "string",
+            "example": "2022-01-14T15:42:25.000+00:00"
+          }
+        },
+        "required": [
+          "name",
+          "user_id",
+          "git_credentials_id",
+          "url",
+          "description",
+          "is_public",
+          "created",
+          "updated"
+        ]
+      },
+      "Deployment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c727c81c42403589c79bc"
+          },
+          "name": {
+            "type": "string",
+            "example": "test seployment"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c87f6aa5a2857398a80a0"
+          },
+          "git_credentials_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c922780b42501489a85dd"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://some_url"
+          },
+          "workflow_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c933891b53612590a96de"
+          },
+          "service_id": {
+            "type": "string",
+            "format": "objectid",
+            "example": "628c928d80b42501489a85de"
+          },
+          "version": {
+            "type": "string",
+            "example": "version"
+          },
+          "state": {
+            "type": "string",
+            "example": "state"
+          },
+          "created": {
+            "type": "string",
+            "example": "2022-01-14T15:42:25.000+00:00"
+          },
+          "updated": {
+            "type": "string",
+            "example": "2022-01-14T15:42:25.000+00:00"
+          }
+        },
+        "required": [
+          "name",
+          "user_id",
+          "git_credentials_id",
+          "url",
+          "workflow_id",
+          "service_id",
+          "version",
+          "state",
+          "created",
+          "updated"
+        ]
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "An error message",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "User__id": {
+        "in": "path",
+        "name": "userId",
+        "required": true,
+        "description": "",
+        "example": "",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "Team__id": {
+        "in": "path",
+        "name": "teamId",
+        "required": true,
+        "description": "",
+        "example": "",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "CiManager__id": {
+        "in": "path",
+        "name": "ciManagerId",
+        "required": true,
+        "description": "",
+        "example": "",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "DeploymentPlatform__id": {
+        "in": "path",
+        "name": "deploymentPlatformId",
+        "required": true,
+        "description": "",
+        "example": "",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ServiceRegistry__id": {
+        "in": "path",
+        "name": "serviceRegistryId",
+        "required": true,
+        "description": "",
+        "example": "",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "GitCredentials__id": {
+        "in": "path",
+        "name": "gitCredentialsId",
+        "required": true,
+        "description": "",
+        "example": "",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "Service__id": {
+        "in": "path",
+        "name": "serviceId",
+        "required": true,
+        "description": "",
+        "example": "",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "Workflow__id": {
+        "in": "path",
+        "name": "workflowId",
+        "required": true,
+        "description": "",
+        "example": "",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "Deployment__id": {
+        "in": "path",
+        "name": "deploymentId",
+        "required": true,
+        "description": "",
+        "example": "",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "If-Match": {
+        "in": "header",
+        "name": "If-Match",
+        "description": "Current value of the _etag field",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "query__where": {
+        "in": "query",
+        "name": "where",
+        "description": "the filters query parameter (ex.: {\"number\": 10})",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "query__projections": {
+        "in": "query",
+        "name": "projection",
+        "description": "the projections query parameter (ex.: {\"name\": 1})",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "query__sort": {
+        "in": "query",
+        "name": "sort",
+        "description": "the sort query parameter (ex.: \"city,-lastname\")",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "query__page": {
+        "in": "query",
+        "name": "page",
+        "description": "the pages query parameter",
+        "schema": {
+          "type": "integer",
+          "example": 1
+        }
+      },
+      "query__max_results": {
+        "in": "query",
+        "name": "max_results",
+        "description": "the max results query parameter",
+        "schema": {
+          "type": "integer",
+          "example": 25
+        }
+      }
+    },
+    "examples": {
+      "User": {
+        "summary": "An example {0} document",
+        "description": "An example for User documents request bodies. Used in POST, PUT, PATCH methods."
+      },
+      "Team": {
+        "summary": "An example {0} document",
+        "description": "An example for Team documents request bodies. Used in POST, PUT, PATCH methods."
+      },
+      "CiManager": {
+        "summary": "An example {0} document",
+        "description": "An example for Team documents request bodies. Used in POST, PUT, PATCH methods."
+      },
+      "DeploymentPlatform": {
+        "summary": "An example {0} document",
+        "description": "An example for Team documents request bodies. Used in POST, PUT, PATCH methods."
+      },
+      "ServiceRegistry": {
+        "summary": "An example {0} document",
+        "description": "An example for Team documents request bodies. Used in POST, PUT, PATCH methods."
+      },
+      "GitCredentials": {
+        "summary": "An example {0} document",
+        "description": "An example for Team documents request bodies. Used in POST, PUT, PATCH methods."
+      },
+      "Service": {
+        "summary": "An example {0} document",
+        "description": "An example for User documents request bodies. Used in POST, PUT, PATCH methods."
+      },
+      "Workflow": {
+        "summary": "An example {0} document",
+        "description": "An example for User documents request bodies. Used in POST, PUT, PATCH methods."
+      },
+      "Deployment": {
+        "summary": "An example {0} document",
+        "description": "An example for User documents request bodies. Used in POST, PUT, PATCH methods."
+      }
+    },
+    "requestBodies": {
+      "User": {
+        "description": "A Artist or list of User documents",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            },
+            "examples": {
+              "User": {
+                "$ref": "#/components/examples/User"
+              }
+            }
+          }
+        }
+      },
+      "Team": {
+        "description": "A Artist or list of Team documents",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Team"
+            },
+            "examples": {
+              "Team": {
+                "$ref": "#/components/examples/Team"
+              }
+            }
+          }
+        }
+      },
+      "CiManager": {
+        "description": "A Artist or list of CiManager documents",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CiManager"
+            },
+            "examples": {
+              "CiManager": {
+                "$ref": "#/components/examples/CiManager"
+              }
+            }
+          }
+        }
+      },
+      "DeploymentPlatform": {
+        "description": "A Artist or list of DeploymentPlatform documents",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DeploymentPlatform"
+            },
+            "examples": {
+              "DeploymentPlatform": {
+                "$ref": "#/components/examples/DeploymentPlatform"
+              }
+            }
+          }
+        }
+      },
+      "ServiceRegistry": {
+        "description": "A ServiceRegistry or list of ServiceRegistry documents",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceRegistry"
+            },
+            "examples": {
+              "ServiceRegistry": {
+                "$ref": "#/components/examples/ServiceRegistry"
+              }
+            }
+          }
+        }
+      },
+      "GitCredentials": {
+        "description": "A GitCredentials or list of GitCredentials documents",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GitCredentials"
+            },
+            "examples": {
+              "GitCredentials": {
+                "$ref": "#/components/examples/GitCredentials"
+              }
+            }
+          }
+        }
+      },
+      "Service": {
+        "description": "A Service or list of Service documents",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Service"
+            },
+            "examples": {
+              "Service": {
+                "$ref": "#/components/examples/Service"
+              }
+            }
+          }
+        }
+      },
+      "Workflow": {
+        "description": "A Workflow or list of Workflow documents",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Workflow"
+            },
+            "examples": {
+              "Service": {
+                "$ref": "#/components/examples/Workflow"
+              }
+            }
+          }
+        }
+      },
+      "Deployment": {
+        "description": "A Deployment or list of Deployment documents",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Deployment"
+            },
+            "examples": {
+              "Deployment": {
+                "$ref": "#/components/examples/Deployment"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "User"
+    },
+    {
+      "name": "Team"
+    },
+    {
+      "name": "CiManager"
+    },
+    {
+      "name": "DeploymentPlatform"
+    },
+    {
+      "name": "ServiceRegistry"
+    },
+    {
+      "name": "GitCredentials"
+    },
+    {
+      "name": "Service"
+    },
+    {
+      "name": "Workflow"
+    },
+    {
+      "name": "Deployment"
+    }
+  ]
+}
